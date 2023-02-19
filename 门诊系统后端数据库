@@ -1,0 +1,181 @@
+IF DB_ID('OutpatientSystem')IS NULL
+CREATE DATABASE OutpatientSystem;
+
+USE OutpatientSystem 
+--模拟群众身份信息表
+DROP TABLE IF EXISTS tb_EveryoneID;
+CREATE TABLE tb_EveryoneID
+(Name
+VARCHAR(20)
+NOT NULL
+,IDNumber
+VARCHAR(30)
+NOT NULL
+)
+INSERT tb_EveryoneID
+(Name
+,IDNumber)
+VALUES
+('王嘉欣','410403200306075623')
+,('周晓柒','410403200209302143')
+,('宋宇柯','328038199311073602')
+--用户登录注册表
+DROP TABLE IF EXISTS tb_User;
+CREATE TABLE tb_User
+(UserNumber
+CHAR(20)
+NOT NULL
+,Password
+VARCHAR(30)
+NOT NULL
+,IDnumber
+VARCHAR(30)
+NOT NULL
+CONSTRAINT tb_User_IDnumber
+PRIMARY KEY(IDnumber)
+,Email
+VARCHAR(30)
+NOT NULL
+)
+INSERT tb_User
+(UserNumber
+,Password
+,IDnumber
+,Email)
+VALUES
+('13837589035','123456','410403200306075623','3426365685@qq.com')
+,('18050326770','WjX2003.BtLa','410403200209302143','3628419902@qq.com')
+
+--用户详细信息表
+DROP TABLE IF EXISTS tb_DetailInformation;
+CREATE TABLE tb_DetailInformation
+(DiagnosisNum
+CHAR(20)
+NOT NULL
+,PatientNum
+CHAR(15)
+,AdmissionNum
+CHAR(15)
+,MedicalInsuranceNo
+CHAR(20)
+,FeiBie
+BIT
+NOT NULL
+,Name
+VARCHAR(20)
+NOT NULL
+,Sex
+CHAR(4)
+NOT NULL
+,Birthday
+DATE
+NOT NULL
+,Age
+CHAR(4)
+NOT NULL
+,Telephone
+CHAR(15)
+NOT NULL
+,ConAddress
+VARCHAR(100)
+NOT NULL
+,IDnumber
+VARCHAR(30)
+NOT NULL
+CONSTRAINT tb_DetailInformation_IDnumber
+PRIMARY KEY(IDnumber)
+,Nationality
+VARCHAR(50)
+NOT NULL
+,Nation
+VARCHAR(20)
+NOT NULL
+,Job
+VARCHAR(20)
+NOT NULL
+,MaritalStatus
+CHAR(10)
+NOT NULL
+,BirthPlace
+VARCHAR(100)
+NOT NULL
+,CreatCardDay
+DATE
+NOT NULL
+,CreatTime
+DATE
+NOT NULL
+,CreatCardName
+VARCHAR(20)
+NOT NULL
+,OutCardDay
+DATE
+,OutTime
+DATE
+,OutCardName
+VARCHAR(20)
+)
+INSERT tb_DetailInformation
+(DiagnosisNum
+,PatientNum
+,AdmissionNum
+,MedicalInsuranceNo
+,FeiBie
+,Name
+,Sex
+,Birthday
+,Age
+,Telephone
+,ConAddress
+,IDnumber
+,Nationality
+,Nation
+,Job
+,MaritalStatus
+,BirthPlace
+,CreatCardDay
+,CreatTime
+,CreatCardName
+,OutCardDay
+,OutTime
+,OutCardName
+)
+VALUES
+('W7925015375','420440334','','','1','王嘉欣','女','2003/03/14','20','13837589035','江苏省无锡市','410403200306075623','中华人民共和国','汉族','学生','未婚','河南省平顶山','2023/02/17','11:05:34','王嘉欣','','','')
+,('Z6399241035','6492250163','','','1','周晓柒','女','2002/09/30','21','18050326770','上海市松江区','410403200209302143','中华人民共和国','回族','学生','未婚','福建省福州','2022/12/17','16:34:00','周晓柒','','','')
+--身份识别问题表
+DROP TABLE IF EXISTS tb_Authentication;
+CREATE TABLE tb_Authentication
+(IDNumber
+VARCHAR(30)
+NOT NULL
+,Question1
+VARCHAR(50)
+NOT NULL
+,Answer1
+VARCHAR(50)
+NOT NULL
+,Question2
+VARCHAR(50)
+NOT NULL
+,Answer2
+VARCHAR(50)
+NOT NULL
+,Question3
+VARCHAR(50)
+NOT NULL
+,Answer3
+VARCHAR(50)
+NOT NULL
+)
+INSERT tb_Authentication
+(IDNumber
+,Question1 
+,Answer1
+,Question2
+,Answer2
+,Question3
+,Answer3)
+VALUES
+('410403200306075623','最喜欢的颜色','淡蓝色','谈过几个男朋友','4','地球如果爆炸了最想做的一件事','抢银行')
+,('410403200209302143','喜欢什么动物','澳大利亚袋鼠','哒哒？','砰！！！','最想去的地方','月球上最大的陨石坑里')
